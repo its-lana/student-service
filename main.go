@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 
 	"student-service/database"
@@ -68,6 +69,6 @@ to use this flag:
 	middleware.LogMiddlewares(e)
 
 	http.NewHttp(e, f)
-
-	e.Logger.Fatal(e.Start(":" + os.Getenv("APP_PORT")))
+	val, _ := os.LookupEnv("APP_PORT")
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", val)))
 }
