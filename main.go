@@ -70,6 +70,6 @@ to use this flag:
 
 	http.NewHttp(e, f)
 
-	ports := util.Getenv("APP_PORT", "8080")
+	ports := util.Getenv("PORT", "8080")
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%v", ports)))
 }
