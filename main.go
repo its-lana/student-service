@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
 
 	"student-service/database"
 	"student-service/database/migration"
@@ -11,6 +10,7 @@ import (
 	"student-service/internal/factory"
 	"student-service/internal/http"
 	"student-service/internal/middleware"
+	"student-service/pkg/util"
 
 	"github.com/labstack/echo/v4"
 )
@@ -69,6 +69,7 @@ to use this flag:
 	middleware.LogMiddlewares(e)
 
 	http.NewHttp(e, f)
-	val, _ := os.LookupEnv("APP_PORT")
-	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", val)))
+
+	ports := util.Getenv("APP_PORT", "8080")
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%v", ports)))
 }
